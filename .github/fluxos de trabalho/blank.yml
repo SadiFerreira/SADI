@@ -1,0 +1,38 @@
+# Este é um fluxo de trabalho básico para ajudá-lo a começar com ações
+
+nome: SADI
+
+# Controles quando o fluxo de trabalho será executado
+em:
+  # Aciona o fluxo de trabalho em eventos de solicitação de pressão ou puxar, mas apenas para o ramo principal
+  empurrar:
+    ramos: [ principal ]
+  pull_request:
+    ramos: [ principal ]
+
+  # Permite que você execute este fluxo de trabalho manualmente a partir da guia Ações
+  workflow_dispatch:
+
+# Um fluxo de trabalho é composto por um ou mais trabalhos que podem ser executados sequencialmente ou em paralelo
+empregos:
+  # Este fluxo de trabalho contém um único trabalho chamado "build"
+  construir:
+    # O tipo de corredor que o trabalho vai executar em
+    runs-on: ubuntu-latest
+
+    # As etapas representam uma sequência de tarefas que serão executadas como parte do trabalho
+    passos:
+      # Verifique seu repositório em $GITHUB_WORKSPACE, para que seu trabalho possa acessá-lo
+      - usos: ações/checkout@v2
+
+      # Executa um único comando usando a concha runners
+      - nome: Executar um script de uma linha
+        executar: echo Olá, mundo!
+
+      # Executa um conjunto de comandos usando a concha de corredores
+      - nome: Executar um script multi-linha
+        execução: |
+ eco Adicione outras ações para construir,
+ teste de eco, e implantar seu projeto.
+ 
+ 
